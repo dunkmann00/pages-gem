@@ -7,7 +7,7 @@ require 'terminal-table'
 
 def latest_version(gem_name)
   uri = "https://rubygems.org/api/v1/versions/#{gem_name}/latest.json"
-  data = open(uri).read
+  data = URI.open(uri).read
   JSON.parse(data)["version"]
 end
 
