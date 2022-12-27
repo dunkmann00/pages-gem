@@ -94,7 +94,6 @@ module GitHubPages
       def effective_config(user_config)
         # Merge user config into defaults
         config = Jekyll::Utils.deep_merge_hashes(defaults_for_env, user_config)
-          .fix_common_issues
           .add_default_collections
 
         # Allow theme to be explicitly disabled via "theme: null"
