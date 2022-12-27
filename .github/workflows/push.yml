@@ -7,8 +7,8 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - 2.6
           - 2.7
+          - 3.1
     steps:
     - uses: actions/checkout@master
     - name: script/cibuild-docker
