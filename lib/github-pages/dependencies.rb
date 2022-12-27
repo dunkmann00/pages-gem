@@ -58,7 +58,7 @@ module GitHubPages
 
     def self.version_report
       require "html/pipeline/version"
-      require "sass/version"
+      require "sass-embedded"
       require "safe_yaml/version"
       require "nokogiri"
 
@@ -68,7 +68,7 @@ module GitHubPages
         # Gem versions we're curious about
         "github-pages" => VERSION.to_s,
         "html-pipeline" => HTML::Pipeline::VERSION,
-        "sass" => Sass.version[:number],
+        "sass" => Sass::Embedded::VERSION,
         "safe_yaml" => SafeYAML::VERSION,
         "nokogiri" => Nokogiri::VERSION,
       }
