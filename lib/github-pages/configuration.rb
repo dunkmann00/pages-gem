@@ -16,7 +16,7 @@ module GitHubPages
       "jailed" => false,
       "plugins" => GitHubPages::Plugins::DEFAULT_PLUGINS,
       "future" => true,
-      "theme" => "jekyll-theme-primer",
+      "theme" => "jekyll-v4-theme-primer",
       "markdown" => "kramdown",
       "kramdown" => {
         "input" => "GFM",
