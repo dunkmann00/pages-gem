@@ -169,11 +169,11 @@ module GitHubPages
         # To minimize errors, lazy-require jekyll-remote-theme if requested by the user
         config["plugins"].push("jekyll-remote-theme") if config.key? "remote_theme"
 
-        return unless development?
-
         if disable_whitelist?
           config["whitelist"] = config["whitelist"] | config["plugins"]
         end
+
+        return unless development?
 
         config["whitelist"] = config["whitelist"] | DEVELOPMENT_PLUGINS
       end
