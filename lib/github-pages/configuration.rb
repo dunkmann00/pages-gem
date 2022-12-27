@@ -156,7 +156,7 @@ module GitHubPages
 
       # If the user's 'exclude' config is the default, also exclude the CNAME
       def exclude_cname(config)
-        return unless config["exclude"].eql? Jekyll::Configuration::DEFAULTS["exclude"]
+        return unless config["exclude"].eql? Jekyll::Configuration::DEFAULT_EXCLUDES
 
         config["exclude"].concat(DEFAULTS["exclude"])
       end
