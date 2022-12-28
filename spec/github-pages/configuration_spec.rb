@@ -19,7 +19,7 @@ describe(GitHubPages::Configuration) do
   before(:each) do
     ENV.delete("DISABLE_WHITELIST")
     ENV["JEKYLL_ENV"] = "test"
-    ENV["PAGES_REPO_NWO"] = "github/pages-gem"
+    ENV["PAGES_REPO_NWO"] = "dunkmann00/pages-gem"
   end
 
   context "#effective_config" do
