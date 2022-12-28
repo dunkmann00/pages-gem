@@ -5,9 +5,9 @@ on:
     tags: [ 'v*' ]
   pull_request:
     branches: [ master ]
- 
+
 env:
-  DOCKER_TAG_IMAGE: "ghcr.io/github/pages-gem"
+  DOCKER_TAG_IMAGE: "ghcr.io/dunkmann00/pages-gem"
 
 jobs:
   build:
@@ -15,11 +15,11 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Get Docker Metadata
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: ${{ env.DOCKER_TAG_IMAGE }}
 
@@ -32,4 +32,3 @@ jobs:
         run: |
           echo ${{ secrets.GITHUB_TOKEN }} | docker login -u ${{ github.actor }} https://ghcr.io --password-stdin
           docker push ${{ steps.meta.outputs.tags }}
-
