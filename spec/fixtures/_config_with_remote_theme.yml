@@ -1,6 +1,6 @@
 some_key: some_value
 safe: false
-gems:
+plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
   - jekyll-feed
