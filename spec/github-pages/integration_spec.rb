@@ -85,7 +85,7 @@ RSpec.describe "Pages Gem Integration spec" do
 
       it "Renders SCSS" do
         expect(path).to be_an_existing_file
-        expect(contents).to match("body { color: #333; }")
+        expect(contents).to match("body {\n  color: #333;\n}\n\n/*# sourceMappingURL=jekyll-sass-converter.css.map */")
       end
     end
 
@@ -256,9 +256,9 @@ RSpec.describe "Pages Gem Integration spec" do
       end
     end
 
-    context "jekyll-theme-primer" do
+    context "jekyll-v4-theme-primer" do
       it "sets the theme" do
-        expect(contents).to match("Theme: jekyll-theme-primer")
+        expect(contents).to match("Theme: jekyll-v4-theme-primer")
       end
 
       it "uses the theme" do
@@ -297,15 +297,15 @@ RSpec.describe "Pages Gem Integration spec" do
     end
   end
 
-  context "jekyll-commonmark-ghpages" do
-    before(:all) do
-      rm_destination
-      bundle_install
-      build(["--config", "_config_with_gfm.yml"])
-    end
-
-    it "builds with GFM" do
-      expect(contents).to match("markdown: CommonMarkGhPages")
-    end
-  end
+  # context "jekyll-commonmark-ghpages" do
+  #   before(:all) do
+  #     rm_destination
+  #     bundle_install
+  #     build(["--config", "_config_with_gfm.yml"])
+  #   end
+  #
+  #   it "builds with GFM" do
+  #     expect(contents).to match("markdown: CommonMarkGhPages")
+  #   end
+  # end
 end
