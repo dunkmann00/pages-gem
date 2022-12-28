@@ -16,7 +16,7 @@ module GitHubPages
       "jailed" => false,
       "plugins" => GitHubPages::Plugins::DEFAULT_PLUGINS,
       "future" => true,
-      "theme" => "jekyll-theme-primer",
+      "theme" => "jekyll-v4-theme-primer",
       "markdown" => "kramdown",
       "kramdown" => {
         "input" => "GFM",
@@ -72,7 +72,7 @@ module GitHubPages
       end
 
       def disable_whitelist?
-        development? && !ENV["DISABLE_WHITELIST"].to_s.empty?
+        !ENV["DISABLE_WHITELIST"].to_s.empty?
       end
 
       def development?
@@ -94,7 +94,6 @@ module GitHubPages
       def effective_config(user_config)
         # Merge user config into defaults
         config = Jekyll::Utils.deep_merge_hashes(defaults_for_env, user_config)
-          .fix_common_issues
           .add_default_collections
 
         # Allow theme to be explicitly disabled via "theme: null"
@@ -157,7 +156,7 @@ module GitHubPages
 
       # If the user's 'exclude' config is the default, also exclude the CNAME
       def exclude_cname(config)
-        return unless config["exclude"].eql? Jekyll::Configuration::DEFAULTS["exclude"]
+        return unless config["exclude"].eql? Jekyll::Configuration::DEFAULT_EXCLUDES
 
         config["exclude"].concat(DEFAULTS["exclude"])
       end
@@ -170,11 +169,11 @@ module GitHubPages
         # To minimize errors, lazy-require jekyll-remote-theme if requested by the user
         config["plugins"].push("jekyll-remote-theme") if config.key? "remote_theme"
 
-        return unless development?
-
         if disable_whitelist?
           config["whitelist"] = config["whitelist"] | config["plugins"]
         end
+
+        return unless development?
 
         config["whitelist"] = config["whitelist"] | DEVELOPMENT_PLUGINS
       end

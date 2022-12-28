@@ -6,4 +6,4 @@ set -ex
 : "${RUBY_VERSION:="2.7.3"}"
 
 docker build --build-arg "RUBY_VERSION=$RUBY_VERSION" -t github-pages .
-docker run --rm --workdir /src/gh/pages-gem github-pages script/cibuild
+docker run --rm --workdir /src/gh/pages-gem --env "JEKYLL_GITHUB_TOKEN=$JEKYLL_GITHUB_TOKEN" github-pages script/cibuild

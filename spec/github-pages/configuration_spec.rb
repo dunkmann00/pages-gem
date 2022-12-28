@@ -19,7 +19,7 @@ describe(GitHubPages::Configuration) do
   before(:each) do
     ENV.delete("DISABLE_WHITELIST")
     ENV["JEKYLL_ENV"] = "test"
-    ENV["PAGES_REPO_NWO"] = "github/pages-gem"
+    ENV["PAGES_REPO_NWO"] = "dunkmann00/pages-gem"
   end
 
   context "#effective_config" do
@@ -105,7 +105,7 @@ describe(GitHubPages::Configuration) do
         it "sets the theme" do
           expect(site.theme).to_not be_nil
           expect(site.theme).to be_a(Jekyll::Theme)
-          expect(site.theme.name).to eql("jekyll-theme-primer")
+          expect(site.theme.name).to eql("jekyll-v4-theme-primer")
         end
       end
 
@@ -261,12 +261,12 @@ describe(GitHubPages::Configuration) do
       context "with the DISABLE_WHITELIST flag" do
         before { ENV["DISABLE_WHITELIST"] = "1" }
 
-        it "doesn't include additional whitelisted plugins" do
-          expect(site.config["whitelist"]).not_to include("jekyll_test_plugin_malicious")
+        it "does include additional whitelisted plugins" do
+          expect(site.config["whitelist"]).to include("jekyll_test_plugin_malicious")
         end
 
-        it "knows not to disable the whitelist" do
-          expect(described_class.disable_whitelist?).to eql(false)
+        it "knows to disable the whitelist" do
+          expect(described_class.disable_whitelist?).to eql(true)
         end
       end
 
