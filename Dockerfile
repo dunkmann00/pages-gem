@@ -12,12 +12,12 @@ RUN gem update --system
 
 COPY .git /src/gh/pages-gem/.git
 COPY Gemfile* /src/gh/pages-gem/
-COPY github-pages.gemspec /src/gh/pages-gem
+COPY github-pages-jekyll-v4.gemspec /src/gh/pages-gem
 COPY lib/ /src/gh/pages-gem/lib
 COPY bin/ /src/gh/pages-gem/bin
 
 RUN \
-  bundle config local.github-pages /src/gh/pages-gem && \
+  bundle config local.github-pages-jekyll-v4 /src/gh/pages-gem && \
   NOKOGIRI_USE_SYSTEM_LIBRARIES=true bundle install --gemfile=/src/gh/pages-gem/Gemfile
 
 COPY . /src/gh/pages-gem
