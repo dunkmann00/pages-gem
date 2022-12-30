@@ -7,13 +7,13 @@ require File.expand_path("lib/github-pages/version", __dir__)
 Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.3.0"
 
-  s.name                  = "github-pages"
+  s.name                  = "jekyll-v4-github-pages"
   s.version               = GitHubPages::VERSION
   s.summary               = "Track GitHub Pages dependencies."
-  s.description           = "Bootstrap the GitHub Pages Jekyll environment locally."
-  s.authors               = "GitHub, Inc."
-  s.email                 = "support@github.com"
-  s.homepage              = "https://github.com/github/pages-gem"
+  s.description           = "Bootstrap the GitHub Pages Jekyll v4 environment locally."
+  s.authors               = ["GitHub, Inc.", "George Waters"]
+  s.email                 = ["support@github.com", "gwatersdev@gmail.com"]
+  s.homepage              = "https://github.com/dunkmann00/pages-gem"
   s.license               = "MIT"
 
   all_files               = `git ls-files -z`.split("\x0")
