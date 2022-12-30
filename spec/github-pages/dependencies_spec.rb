@@ -16,7 +16,7 @@ describe(GitHubPages::Dependencies) do
   it "exposes relevant versions of dependencies, self and Ruby" do
     expect(described_class.versions).to be_a(Hash)
     expect(described_class.versions).to include("ruby")
-    expect(described_class.versions).to include("github-pages")
+    expect(described_class.versions).to include("github-pages-jekyll-v4")
   end
 
   context "jekyll core dependencies" do
