@@ -14,7 +14,7 @@ describe(GitHubPages) do
   end
 
   it "outputs the branch" do
-    expect(`./bin/github-pages branch`).to eql("gem 'github-pages', :branch => 'master', :git => 'git://github.com/github/pages-gem'\n")
+    expect(`./bin/github-pages branch`).to eql("gem 'github-pages-jekyll-v4', :branch => 'master', :git => 'git://github.com/dunkmann00/pages-gem'\n")
   end
 
   it "detects the CNAME when running health check" do
