@@ -4,7 +4,7 @@
 
 set -e
 
-# check that gh is installed and logged in 
+# check that gh is installed and logged in
 
 gh auth status -h github.com
 
@@ -19,7 +19,7 @@ bundle update
 # Build a new gem archive.
 
 rm -rf github-pages-*.gem
-gem build -q github-pages.gemspec
+gem build -q jekyll-v4-github-pages.gemspec
 
 # Make sure we're on the master branch.
 
@@ -53,13 +53,13 @@ gh release create "$tag" --notes "Automated release for $tag"
 # create a tmp folder
 mkdir -p tmp
 
-#for each dependent repo, create a new branch an a blank pr. 
-# first get the sha of main for each repo 
+#for each dependent repo, create a new branch an a blank pr.
+# first get the sha of main for each repo
 
 gh_pages_sha=`gh api repos/github/pages/git/refs/heads/master | jq '. | .object.sha'`
 jekyll_sha=`gh api repos/actions/jekyll-build-pages/git/refs/heads/main | jq '. | .object.sha'`
 
-# then create the branches 
+# then create the branches
 
 gh api repos/github/pages/git/refs -F "sha"="$gh_pages_sha" -F "ref"="refs/heads/pages-gem-release-$tag"
 gh api repos/github/pages/git/refs -F "sha"="$jekyll_sha" -F "ref"="refs/heads/pages-gem-release-$tag"
@@ -85,7 +85,7 @@ gh api repos/github/pages/git/refs/heads/pages-gem-release-$tag -F "sha"="$new_g
 gh api repos/actions/jekyll-build-pages/git/refs/heads/pages-gem-release-$tag -F "sha"="$new_jekyll_sha" -F "ref"="refs/heads/pages-gem-release-$tag" -F "force"="true"
 
 # create pull requests in downstream repos
-gh pr create --base "master" --head "pages-gem-release-$tag" --title "Bump pages-gem version to $tag" --assignee "@me" --body "Bump pages-gem version to $tag. You must manually make those changes and commit to this branch" --repo "github/pages" 
+gh pr create --base "master" --head "pages-gem-release-$tag" --title "Bump pages-gem version to $tag" --assignee "@me" --body "Bump pages-gem version to $tag. You must manually make those changes and commit to this branch" --repo "github/pages"
 gh pr create --base "main"  --head "pages-gem-release-$tag" --title "Bump pages-gem version to $tag" --assignee "@me" --body "Bump pages-gem version to $tag. You must manually make those changes and commit to this branch" --repo "actions/jekyll-build-pages"
 
 # clean up the input file for the commit
