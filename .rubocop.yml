@@ -74,6 +74,21 @@ Style/Documentation:
     - !ruby/regexp /spec\/.*.rb$/
     - !ruby/regexp /features\/.*.rb$/
 
+Style/ArrayIntersect:
+  Enabled: true
+
+Style/ConcatArrayLiterals:
+  Enabled: false
+
+Style/RedundantConstantBase:
+  Enabled: true
+
+Style/RedundantDoubleSplatHashBraces:
+  Enabled: true
+
+Style/RedundantEach:
+  Enabled: true
+
 Metrics/ClassLength:
   Exclude:
     - !ruby/regexp /spec\/.*.rb$/
