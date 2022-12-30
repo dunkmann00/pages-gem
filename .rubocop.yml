@@ -97,7 +97,7 @@ Metrics/ClassLength:
 
 Metrics/BlockLength:
   Exclude:
-    - github-pages.gemspec
+    - jekyll-v4-github-pages.gemspec
     - !ruby/regexp /spec\/.*.rb/
 
 Layout/LineLength:

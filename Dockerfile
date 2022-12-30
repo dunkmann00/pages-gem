@@ -12,7 +12,7 @@ RUN gem update --system
 
 COPY .git /src/gh/pages-gem/.git
 COPY Gemfile* /src/gh/pages-gem/
-COPY github-pages.gemspec /src/gh/pages-gem
+COPY jekyll-v4-github-pages.gemspec /src/gh/pages-gem
 COPY lib/ /src/gh/pages-gem/lib
 COPY bin/ /src/gh/pages-gem/bin
 
