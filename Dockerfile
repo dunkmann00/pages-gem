@@ -17,7 +17,7 @@ COPY lib/ /src/gh/pages-gem/lib
 COPY bin/ /src/gh/pages-gem/bin
 
 RUN \
-  bundle config local.github-pages /src/gh/pages-gem && \
+  bundle config local.jekyll-v4-github-pages /src/gh/pages-gem && \
   NOKOGIRI_USE_SYSTEM_LIBRARIES=true bundle install --gemfile=/src/gh/pages-gem/Gemfile
 
 COPY . /src/gh/pages-gem
