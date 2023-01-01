@@ -12,7 +12,7 @@ export BUNDLE_GEMFILE
 cd test-site
 rm -Rf Gemfile
 
-echo "Using $(bundle exec github-pages --version)"
+echo "Using $(bundle exec jekyll-v4-github-pages --version)"
 echo "Using $(bundle exec jekyll --version)"
 bundle exec jekyll build --trace --verbose
 

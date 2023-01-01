@@ -181,7 +181,7 @@ module GitHubPages
       # Print the versions for github-pages and jekyll to the debug
       # stream for debugging purposes. See by running Jekyll with '--verbose'
       def debug_print_versions
-        Jekyll.logger.debug "GitHub Pages:", "github-pages v#{GitHubPages::VERSION}"
+        Jekyll.logger.debug "GitHub Pages:", "jekyll-v4-github-pages v#{GitHubPages::VERSION}"
         Jekyll.logger.debug "GitHub Pages:", "jekyll v#{Jekyll::VERSION}"
       end
     end

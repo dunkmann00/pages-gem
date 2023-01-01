@@ -3,10 +3,10 @@
 require 'mercenary'
 require_relative "../lib/github-pages"
 
-Mercenary.program(:"github-pages") do |p|
+Mercenary.program(:"jekyll-v4-github-pages") do |p|
   p.version GitHubPages::VERSION
   p.description
-  p.syntax "github-pages <subcommand> options"
+  p.syntax "jekyll-v4-github-pages <subcommand> options"
 
   p.command(:versions) do |c|
     c.syntax "versions"
@@ -30,9 +30,9 @@ Mercenary.program(:"github-pages") do |p|
     c.alias(:br)
     c.action do |args, options|
       puts [
-        "gem 'github-pages'",
+        "gem 'jekyll-v4-github-pages'",
         ":branch => '#{args[0] || "master"}'",
-        ":git => 'git://github.com/github/pages-gem'"
+        ":git => 'git://github.com/dunkmann00/pages-gem'"
       ].join(", ")
     end
   end
