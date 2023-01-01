@@ -66,7 +66,7 @@ module GitHubPages
         "ruby" => RUBY_VERSION,
 
         # Gem versions we're curious about
-        "github-pages" => VERSION.to_s,
+        "jekyll-v4-github-pages" => VERSION.to_s,
         "html-pipeline" => HTML::Pipeline::VERSION,
         "sass" => Sass::Embedded::VERSION,
         "safe_yaml" => SafeYAML::VERSION,

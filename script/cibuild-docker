@@ -5,5 +5,5 @@ set -ex
 # Set the ruby version in the Action definition matrix.
 : "${RUBY_VERSION:="3.1.2"}"
 
-docker build --build-arg "RUBY_VERSION=$RUBY_VERSION" -t github-pages .
-docker run --rm --workdir /src/gh/pages-gem --env "JEKYLL_GITHUB_TOKEN=$JEKYLL_GITHUB_TOKEN" github-pages script/cibuild
+docker build --build-arg "RUBY_VERSION=$RUBY_VERSION" -t jekyll-v4-github-pages .
+docker run --rm --workdir /src/gh/pages-gem --env "JEKYLL_GITHUB_TOKEN=$JEKYLL_GITHUB_TOKEN" jekyll-v4-github-pages script/cibuild
