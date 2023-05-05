@@ -49,7 +49,7 @@ module GitHubPages
       "minima" => "2.5.1",
       "jekyll-swiss" => "1.0.0",
       "jekyll-theme-primer" => "0.6.0",
-      "jekyll-v4-theme-primer" => "0.11.0",
+      "jekyll-v4-theme-primer" => "0.12.0",
       "jekyll-theme-architect" => "0.2.0",
       "jekyll-theme-cayman" => "0.2.0",
       "jekyll-theme-dinky" => "0.2.0",
