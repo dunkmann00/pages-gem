@@ -3,7 +3,13 @@
 A simple Ruby Gem to bootstrap dependencies for setting up and maintaining a local Jekyll environment in sync with GitHub Pages.
 
 [![Gem Version](https://badge.fury.io/rb/github-pages.svg)](https://badge.fury.io/rb/github-pages)
-[![Build Status](https://img.shields.io/travis/github/pages-gem/master.svg)](https://travis-ci.org/github/pages-gem)
+[![Build Status](https://github.com/dunkmann00/pages-gem/actions/workflows/publish-docker.yml/badge.svg)](https://github.com/dunkmann00/pages-gem/actions/workflows/publish-docker.yml)
+
+**This gem is not the official gem used for GitHub Pages**. This is a fork of the original `pages-gem`
+that I have modified to support Jekyll v4. The dependencies are almost identical to the original `pages-gem` except that where
+possible, I have updated the dependencies to newer versions. The biggest difference is of course Jekyll being update to v4.x.
+
+You can see a list of the live dependency versions at [georgeh2os.com/pages-gem/versions](https://www.georgeh2os.com/pages-gem/versions/).
 
 ## Usage
 
@@ -65,7 +71,7 @@ $ bundle exec github-pages versions
 +---------------------------+---------+
 ```
 
-Note, you can also pass the `--gemfile` flag to get the dependencies listed in a valid Gemfile dependency format. You can also see a list of the live dependency versions at [pages.github.com/versions](https://pages.github.com/versions/).
+Note, you can also pass the `--gemfile` flag to get the dependencies listed in a valid Gemfile dependency format. You can also see a list of the live dependency versions at [georgeh2os.com/pages-gem/versions](https://www.georgeh2os.com/pages-gem/versions/).
 
 #### Health check
 
@@ -81,7 +87,7 @@ See the [GitHub Pages Health Check](https://github.com/github/pages-health-check
 
 ### Bypassing the plugin whitelist
 
-If you'd like to run a Jekyll plugin locally that's not whitelisted for use on GitHub Pages, you can do so by prefixing the `jekyll build` or `jekyll serve` command with `DISABLE_WHITELIST=true`. This will allow your site to use any plugin listed in your site's `gems` configuration flag. Please note, however, this option is only available when previewing your Jekyll site locally.
+If you'd like to run a Jekyll plugin locally that's not whitelisted for use on GitHub Pages, you can do so by prefixing the `jekyll build` or `jekyll serve` command with `DISABLE_WHITELIST=true`. This will allow your site to use any plugin listed in your site's `gems` configuration flag. ~~Please note, however, this option is only available when previewing your Jekyll site locally.~~ Please note, unlike the original `pages-gem`, in this fork you can bypass the plugin whitelist in any mode (i.e. development, production, etc.).
 
 ## Updating
 
@@ -107,7 +113,7 @@ This includes Markdown processors, and any other Jekyll dependency for which ver
 
 ## Changelog
 
-See [all releases](https://github.com/github/pages-gem/releases).
+See [all releases](https://github.com/dunkmann00/pages-gem/releases).
 
 ## Releasing
 
@@ -120,7 +126,7 @@ It will also create prs in the relevant repos and assign them to you. It is your
 1. update the version of the gem in those repos
 2. deploy those services as needed
 
-The relevant repos are: 
+The relevant repos are:
 1. [github-pages](https://github.com/github/pages)
 2. [jekyll-build-pages](https://github.com/actions/jekyll-build-pages/blob/main/Gemfile)
 3. [pages.github.com](https://github.com/github/pages.github.com)
