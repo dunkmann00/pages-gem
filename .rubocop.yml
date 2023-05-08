@@ -126,11 +126,20 @@ Metrics/MethodLength:
 Style/Alias:
   Enabled: false # We have no guidance on alias vs alias_method
 
+Style/MapToSet:
+  Enabled: true
+
+Style/MinMaxComparison:
+  Enabled: true
+
 Style/RedundantSelf:
   Enabled: false # Sometimes a self.field is a bit more clear
 
 Style/IfUnlessModifier:
   Enabled: false
+
+Style/YodaExpression:
+  Enabled: true
 
 Naming/FileName: #Rubocop doesn't like the Git*H*ub namespace
   Enabled: false
