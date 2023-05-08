@@ -1,0 +1,8 @@
+theme: jekyll-v4-theme-primer
+
+primer:
+  theme: auto
+
+title: Pages - Jekyll v4
+description: A simple Ruby Gem to bootstrap dependencies for setting up and
+  maintaining a local Jekyll v4 environment similar to GitHub Pages.

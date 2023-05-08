@@ -6,3 +6,5 @@ CNAME
 test-site/
 vendor/
 tmp/
+_site/
+.jekyll-cache
