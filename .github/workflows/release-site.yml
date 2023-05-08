@@ -26,8 +26,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout (All History)
         uses: actions/checkout@v3
+        with:
+          # Since this repo isn't very big, this is trivial.
+          fetch-depth: 0
+      - name: Get Latest Tag
+        run: echo "LATEST_TAG=$(git describe --tags --abbrev=0)" >> ${{ github.env }}
+        # Alternate way to get the latest tag (Doesn't require 'fetch-depth: 0')
+        # run: echo "LATEST_TAG=v$(grep 'VERSION' lib/github-pages/version.rb | awk '{print $3}')" >> ${{ github.env }}
+      - name: Checkout (Latest Release Tag)
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ env.LATEST_TAG }}
       - name: Setup Ruby
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
