@@ -2,7 +2,7 @@
 
 A simple Ruby Gem to bootstrap dependencies for setting up and maintaining a local Jekyll v4 environment similar to GitHub Pages.
 
-[![Gem Version](https://badge.fury.io/rb/github-pages.svg)](https://badge.fury.io/rb/github-pages)
+[![Gem Version](https://badge.fury.io/rb/jekyll-v4-github-pages.svg)](https://badge.fury.io/rb/jekyll-v4-github-pages)
 [![Build Status](https://github.com/dunkmann00/pages-gem/actions/workflows/publish-docker.yml/badge.svg)](https://github.com/dunkmann00/pages-gem/actions/workflows/publish-docker.yml)
 
 **This gem is not the official gem used for GitHub Pages**. This is a fork of the original `pages-gem`
