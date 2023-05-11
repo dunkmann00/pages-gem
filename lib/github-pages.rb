@@ -18,3 +18,5 @@ end
 Jekyll::Hooks.register :site, :after_reset do |site|
   GitHubPages::Configuration.set(site)
 end
+
+Jekyll::Configuration::DEFAULTS = Jekyll::Utils.deep_merge_hashes Jekyll::Configuration::DEFAULTS, GitHubPages::Configuration::DEFAULTS
