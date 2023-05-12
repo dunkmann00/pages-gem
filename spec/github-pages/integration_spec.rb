@@ -34,7 +34,7 @@ RSpec.describe "Pages Gem Integration spec" do
 
   def build(additional_flags = nil)
     Dir.chdir(source) do
-      cmd = %w(bundle exec jekyll build --verbose --trace)
+      cmd = %w(../../bin/jekyll-v4-github-pages build --verbose)
       cmd = cmd.concat ["--source", source, "--destination", destination]
       cmd = cmd.concat(additional_flags) if additional_flags
       run_cmd(cmd)

@@ -1,0 +1,21 @@
+# Default, user overwritable options
+jailed: false
+future: true
+theme: jekyll-v4-theme-primer
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  gfm_quirks: paragraph_end
+  syntax_highlighter_opts:
+    default_lang: plaintext
+  template: ""
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
+# Previously not overwritable, now these can be configured as well
+lsi: false
+safe: true
+highlighter: rouge
+gist:
+  noscript: false

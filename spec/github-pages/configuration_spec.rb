@@ -9,6 +9,7 @@ describe(GitHubPages::Configuration) do
       "quiet" => true,
       "testing" => "123",
       "destination" => tmp_dir,
+      "config" => ["lib/_default_config.yml", File.join(fixture_dir, "_config.yml")],
     }
   end
   let(:configuration) { Jekyll.configuration(test_config) }
@@ -173,6 +174,7 @@ describe(GitHubPages::Configuration) do
         "testing" => "123",
         "destination" => tmp_dir,
         "future" => true,
+        "config" => ["lib/_default_config.yml", File.join(fixture_dir, "_config.yml")],
       }
     end
 

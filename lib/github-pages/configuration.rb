@@ -4,6 +4,7 @@ require "securerandom"
 
 module GitHubPages
   # Sets and manages Jekyll configuration defaults
+  # Most configuration is now set in _default_config.yml
   class Configuration
     # Backward compatability of constants
     DEFAULT_PLUGINS     = GitHubPages::Plugins::DEFAULT_PLUGINS
@@ -11,38 +12,14 @@ module GitHubPages
     DEVELOPMENT_PLUGINS = GitHubPages::Plugins::DEVELOPMENT_PLUGINS
     THEMES              = GitHubPages::Plugins::THEMES
 
-    # Default, user overwritable options
+    # The rest of the defaults are configured in _default_config.yml
     DEFAULTS = {
-      "jailed" => false,
       "plugins" => GitHubPages::Plugins::DEFAULT_PLUGINS,
-      "future" => true,
-      "theme" => "jekyll-v4-theme-primer",
-      "markdown" => "kramdown",
-      "kramdown" => {
-        "input" => "GFM",
-        "hard_wrap" => false,
-        "gfm_quirks" => "paragraph_end",
-        "syntax_highlighter_opts" => {
-          "default_lang" => "plaintext",
-        },
-        "template" => "",
-        "math_engine" => "mathjax",
-        "syntax_highlighter" => "rouge",
-      },
-      "exclude" => ["CNAME"],
-
-      # Previously not overwritable, now these can be configured as well
-      "lsi" => false,
-      "safe" => true,
       "whitelist" => GitHubPages::Plugins::PLUGIN_WHITELIST,
-      "highlighter" => "rouge",
-      "gist" => {
-        "noscript" => false,
-      },
     }.freeze
 
     # User-overwritable defaults used only in production for practical reasons
-    PRODUCTION_DEFAULTS = Jekyll::Utils.deep_merge_hashes DEFAULTS, {
+    PRODUCTION_DEFAULTS = {
       "sass" => {
         "style" => "compressed",
       },
@@ -65,14 +42,28 @@ module GitHubPages
         Jekyll.env == "development"
       end
 
+      def add_defaults(user_config)
+        DEFAULTS.each { |key, value|
+          if user_config.key? key
+            user_config[key].concat(value).uniq!
+          else
+            user_config[key] = value
+          end
+        }
+        user_config
+      end
+
       # Returns the effective Configuration
       #
       # Note: this is a highly modified version of Jekyll#configuration
       def effective_config(user_config)
-        config = user_config
+        config = add_defaults user_config
         if !development?
           config = Jekyll::Utils.deep_merge_hashes PRODUCTION_DEFAULTS, config
         end
+
+        puts "Safe:"
+        puts config["safe"]
 
         # Allow theme to be explicitly disabled via "theme: null"
         config["theme"] = user_config["theme"] if user_config.key?("theme")
@@ -133,7 +124,7 @@ module GitHubPages
       def exclude_cname(config)
         return unless config["exclude"].eql? Jekyll::Configuration::DEFAULT_EXCLUDES
 
-        config["exclude"].concat(DEFAULTS["exclude"])
+        config["exclude"].push("CNAME")
       end
 
       # Requires default plugins and configures whitelist in development
