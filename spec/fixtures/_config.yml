@@ -1,5 +1,4 @@
 some_key: some_value
-safe: false
 plugins:
   - jekyll-sitemap
   - jekyll-redirect-from

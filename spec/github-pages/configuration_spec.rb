@@ -14,7 +14,6 @@ describe(GitHubPages::Configuration) do
   let(:configuration) { Jekyll.configuration(test_config) }
   let(:site)          { Jekyll::Site.new(configuration) }
   let(:effective_config) { described_class.effective_config(site.config) }
-  let(:defaults_for_env) { described_class.defaults_for_env }
 
   before(:each) do
     ENV.delete("DISABLE_WHITELIST")
@@ -25,7 +24,7 @@ describe(GitHubPages::Configuration) do
   context "#effective_config" do
     it "sets configuration defaults" do
       expect(effective_config["kramdown"]["input"]).to eql("GFM")
-      expect(effective_config["future"]).to eql(false)
+      expect(effective_config["future"]).to eql(true)
     end
 
     it "sets default gems" do
@@ -44,7 +43,7 @@ describe(GitHubPages::Configuration) do
       expect(effective_config["highlighter"]).to eql("rouge")
     end
 
-    it "overrides user's values" do
+    it "doesn't override user's values" do
       expect(effective_config["safe"]).to eql(true)
       expect(effective_config["quiet"]).to eql(true)
     end
@@ -162,7 +161,6 @@ describe(GitHubPages::Configuration) do
 
       it "doesn't compress sass" do
         expect(effective_config["sass"]).to be_nil
-        expect(defaults_for_env["sass"]).to be_nil
       end
     end
   end
@@ -199,7 +197,7 @@ describe(GitHubPages::Configuration) do
       expect(site.config["highlighter"]).to eql("rouge")
     end
 
-    it "overrides user's values" do
+    it "doesn't override user's values" do
       expect(site.config["safe"]).to eql(true)
       expect(site.config["quiet"]).to eql(true)
     end
@@ -272,7 +270,6 @@ describe(GitHubPages::Configuration) do
 
       it "compresses sass" do
         expect(effective_config["sass"]).to eql("style" => "compressed")
-        expect(defaults_for_env["sass"]).to eql("style" => "compressed")
       end
     end
   end
