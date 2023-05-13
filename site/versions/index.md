@@ -20,6 +20,6 @@ For a history of dependency changes, see [the past releases](https://github.com/
 
 Want a more programmatic way to keep your local version of Jekyll up to date?
 All dependencies are bundled within the GitHub Pages Ruby gem, or are available
-programmatically via [www.georgeh2os.com/pages-gem/versions.json](https://www.georgeh2os.com/pages-gem/versions.json)
+programmatically via [www.georgeh2os.com/pages-gem/versions.json](../versions.json)
 
 Last updated {{ "now" | date: "%Y-%m-%d %I%P %z" }}
