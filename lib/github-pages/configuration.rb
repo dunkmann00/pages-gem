@@ -12,12 +12,6 @@ module GitHubPages
     DEVELOPMENT_PLUGINS = GitHubPages::Plugins::DEVELOPMENT_PLUGINS
     THEMES              = GitHubPages::Plugins::THEMES
 
-    # The rest of the defaults are configured in _default_config.yml
-    DEFAULTS = {
-      "plugins" => GitHubPages::Plugins::DEFAULT_PLUGINS,
-      "whitelist" => GitHubPages::Plugins::PLUGIN_WHITELIST,
-    }.freeze
-
     # User-overwritable defaults used only in production for practical reasons
     PRODUCTION_DEFAULTS = {
       "sass" => {
@@ -42,22 +36,11 @@ module GitHubPages
         Jekyll.env == "development"
       end
 
-      def add_defaults(user_config)
-        DEFAULTS.each { |key, value|
-          if user_config.key? key
-            user_config[key].concat(value).uniq!
-          else
-            user_config[key] = value
-          end
-        }
-        user_config
-      end
-
       # Returns the effective Configuration
       #
       # Note: this is a highly modified version of Jekyll#configuration
       def effective_config(user_config)
-        config = add_defaults user_config
+        config = user_config
         if !development?
           config = Jekyll::Utils.deep_merge_hashes PRODUCTION_DEFAULTS, config
         end
@@ -66,7 +49,6 @@ module GitHubPages
         config["theme"] = user_config["theme"] if user_config.key?("theme")
 
         migrate_theme_to_remote_theme(config)
-        exclude_cname(config)
 
         restrict_and_config_markdown_processor(config)
 
@@ -117,17 +99,11 @@ module GitHubPages
         # This functionality has been rolled back due to complications with jekyll-remote-theme.
       end
 
-      # If the user's 'exclude' config is the default, also exclude the CNAME
-      def exclude_cname(config)
-        return unless config["exclude"].eql? Jekyll::Configuration::DEFAULT_EXCLUDES
-
-        config["exclude"].push("CNAME")
-      end
-
       # Requires default plugins and configures whitelist in development
       def configure_plugins(config)
         # Ensure we have those gems we want.
         config["plugins"] = Array(config["plugins"]) | DEFAULT_PLUGINS
+        config["whitelist"] = Array(config["whitelist"]) | PLUGIN_WHITELIST
 
         # To minimize errors, lazy-require jekyll-remote-theme if requested by the user
         config["plugins"].push("jekyll-remote-theme") if config.key? "remote_theme"

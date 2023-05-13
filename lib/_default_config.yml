@@ -12,6 +12,8 @@ kramdown:
   template: ""
   math_engine: mathjax
   syntax_highlighter: rouge
+exclude:
+  - CNAME
 
 # Previously not overwritable, now these can be configured as well
 lsi: false
