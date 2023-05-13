@@ -1,6 +1,6 @@
 # Default, user overwritable options
 jailed: false
-future: true
+future: false
 theme: jekyll-v4-theme-primer
 markdown: kramdown
 kramdown:

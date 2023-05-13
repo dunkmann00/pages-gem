@@ -62,9 +62,6 @@ module GitHubPages
           config = Jekyll::Utils.deep_merge_hashes PRODUCTION_DEFAULTS, config
         end
 
-        puts "Safe:"
-        puts config["safe"]
-
         # Allow theme to be explicitly disabled via "theme: null"
         config["theme"] = user_config["theme"] if user_config.key?("theme")
 

@@ -25,7 +25,7 @@ describe(GitHubPages::Configuration) do
   context "#effective_config" do
     it "sets configuration defaults" do
       expect(effective_config["kramdown"]["input"]).to eql("GFM")
-      expect(effective_config["future"]).to eql(true)
+      expect(effective_config["future"]).to eql(false)
     end
 
     it "sets default gems" do
