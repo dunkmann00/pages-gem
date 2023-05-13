@@ -3,7 +3,8 @@
 require "securerandom"
 
 module GitHubPages
-  # Sets and manages Jekyll configuration defaults and overrides
+  # Sets and manages Jekyll configuration defaults
+  # Most configuration is now set in _default_config.yml
   class Configuration
     # Backward compatability of constants
     DEFAULT_PLUGINS     = GitHubPages::Plugins::DEFAULT_PLUGINS
@@ -11,54 +12,10 @@ module GitHubPages
     DEVELOPMENT_PLUGINS = GitHubPages::Plugins::DEVELOPMENT_PLUGINS
     THEMES              = GitHubPages::Plugins::THEMES
 
-    # Default, user overwritable options
-    DEFAULTS = {
-      "jailed" => false,
-      "plugins" => GitHubPages::Plugins::DEFAULT_PLUGINS,
-      "future" => true,
-      "theme" => "jekyll-v4-theme-primer",
-      "markdown" => "kramdown",
-      "kramdown" => {
-        "input" => "GFM",
-        "hard_wrap" => false,
-        "gfm_quirks" => "paragraph_end",
-        "syntax_highlighter_opts" => {
-          "default_lang" => "plaintext",
-        },
-      },
-      "exclude" => ["CNAME"],
-    }.freeze
-
     # User-overwritable defaults used only in production for practical reasons
-    PRODUCTION_DEFAULTS = Jekyll::Utils.deep_merge_hashes DEFAULTS, {
+    PRODUCTION_DEFAULTS = {
       "sass" => {
         "style" => "compressed",
-      },
-    }.freeze
-
-    # Options which GitHub Pages sets, regardless of the user-specified value
-    #
-    # The following values are also overridden by GitHub Pages, but are not
-    # overridden locally, for practical purposes:
-    # * source
-    # * destination
-    # * jailed
-    # * verbose
-    # * incremental
-    # * GH_ENV
-    OVERRIDES = {
-      "lsi" => false,
-      "safe" => true,
-      "plugins_dir" => SecureRandom.hex,
-      "whitelist" => GitHubPages::Plugins::PLUGIN_WHITELIST,
-      "highlighter" => "rouge",
-      "kramdown" => {
-        "template" => "",
-        "math_engine" => "mathjax",
-        "syntax_highlighter" => "rouge",
-      },
-      "gist" => {
-        "noscript" => false,
       },
     }.freeze
 
@@ -79,31 +36,19 @@ module GitHubPages
         Jekyll.env == "development"
       end
 
-      def defaults_for_env
-        defaults = development? ? DEFAULTS : PRODUCTION_DEFAULTS
-        Jekyll::Utils.deep_merge_hashes Jekyll::Configuration::DEFAULTS, defaults
-      end
-
-      # Given a user's config, determines the effective configuration by building a user
-      # configuration sandwhich with our overrides overriding the user's specified
-      # values which themselves override our defaults.
-      #
       # Returns the effective Configuration
       #
       # Note: this is a highly modified version of Jekyll#configuration
       def effective_config(user_config)
-        # Merge user config into defaults
-        config = Jekyll::Utils.deep_merge_hashes(defaults_for_env, user_config)
-          .add_default_collections
+        config = user_config
+        if !development?
+          config = Jekyll::Utils.deep_merge_hashes PRODUCTION_DEFAULTS, config
+        end
 
         # Allow theme to be explicitly disabled via "theme: null"
         config["theme"] = user_config["theme"] if user_config.key?("theme")
 
         migrate_theme_to_remote_theme(config)
-        exclude_cname(config)
-
-        # Merge overwrites into user config
-        config = Jekyll::Utils.deep_merge_hashes config, OVERRIDES
 
         restrict_and_config_markdown_processor(config)
 
@@ -123,7 +68,7 @@ module GitHubPages
         processed(site)
       end
 
-      # Set the site's configuration with all the proper defaults and overrides.
+      # Set the site's configuration with all the proper defaults.
       # Should be called by #set to protect against multiple processings.
       def set!(site)
         site.config = effective_config(site.config)
@@ -154,17 +99,11 @@ module GitHubPages
         # This functionality has been rolled back due to complications with jekyll-remote-theme.
       end
 
-      # If the user's 'exclude' config is the default, also exclude the CNAME
-      def exclude_cname(config)
-        return unless config["exclude"].eql? Jekyll::Configuration::DEFAULT_EXCLUDES
-
-        config["exclude"].concat(DEFAULTS["exclude"])
-      end
-
       # Requires default plugins and configures whitelist in development
       def configure_plugins(config)
         # Ensure we have those gems we want.
         config["plugins"] = Array(config["plugins"]) | DEFAULT_PLUGINS
+        config["whitelist"] = Array(config["whitelist"]) | PLUGIN_WHITELIST
 
         # To minimize errors, lazy-require jekyll-remote-theme if requested by the user
         config["plugins"].push("jekyll-remote-theme") if config.key? "remote_theme"
