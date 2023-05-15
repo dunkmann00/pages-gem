@@ -69,7 +69,9 @@ Mercenary.program(:"jekyll-v4-github-pages") do |p|
 
     c.action do |_, options|
       Jekyll.logger.log_level = :error
-      user_configs = Jekyll::Configuration.new.config_files(options.except("verbose"))
+      config_options = options.clone
+      config_options.delete("verbose")
+      user_configs = Jekyll::Configuration.new.config_files(config_options)
       Jekyll.logger.log_level = :info
 
       default_config = File.expand_path("../../lib/_default_config.yml", __FILE__)
