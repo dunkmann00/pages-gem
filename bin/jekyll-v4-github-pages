@@ -68,18 +68,14 @@ Mercenary.program(:"jekyll-v4-github-pages") do |p|
     c.option 'config', '--config FILE1[,FILE2[,FILE3]]', Array, 'Specify config files instead of using _config.yml'
 
     c.action do |_, options|
-      config = options["config"] || ["_config.yml"]
+      Jekyll.logger.log_level = :error
+      user_configs = Jekyll::Configuration.new.config_files(options.except("verbose"))
+      Jekyll.logger.log_level = :info
 
       default_config = File.expand_path("../../lib/_default_config.yml", __FILE__)
-      options["config"] = [default_config]
 
-      config.each { |item|
-        user_config = File.join(options["source"] || Dir.pwd, item)
-        if File.exist?(user_config)
-          options["config"].push(user_config)
-        end
-      }
-      
+      options["config"] = [default_config] + user_configs
+
       Jekyll::Commands::Build.process(options)
     end
   end
