@@ -75,6 +75,7 @@ Mercenary.program(:"jekyll-v4-github-pages") do |p|
       Jekyll.logger.log_level = :info
 
       default_config = File.expand_path("../../lib/_default_config.yml", __FILE__)
+      user_configs = user_configs.select { |config| File.exist?(config) }
 
       options["config"] = [default_config] + user_configs
 
