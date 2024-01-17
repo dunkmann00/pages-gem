@@ -7,7 +7,7 @@ module GitHubPages
   class Dependencies
     VERSIONS = {
       # Jekyll
-      "jekyll" => "4.3.2",
+      "jekyll" => "4.3.3",
       "jekyll-sass-converter" => "3.0.0",
 
       # Converters
@@ -17,8 +17,8 @@ module GitHubPages
 
       # Misc
       "liquid" => "4.0.4",
-      "rouge" => "4.1.1",
-      "github-pages-health-check" => "1.18.1",
+      "rouge" => "4.2",
+      "github-pages-health-check" => "1.18.2",
 
       # Plugins
       "jekyll-redirect-from" => "0.16.0",
@@ -28,7 +28,7 @@ module GitHubPages
       "jekyll-paginate" => "1.1.0",
       "jekyll-coffeescript" => "2.0.0",
       "jekyll-seo-tag" => "2.8.0",
-      "jekyll-github-metadata" => "2.16.0",
+      "jekyll-github-metadata" => "2.16.1",
       "jekyll-avatar" => "0.8.0",
       "jekyll-remote-theme" => "0.4.3",
       "jekyll-include-cache" => "0.2.1",
