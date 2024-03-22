@@ -17,7 +17,7 @@ module GitHubPages
 
       # Misc
       "liquid" => "4.0.4",
-      "rouge" => "4.2",
+      "rouge" => "4.2.1",
       "github-pages-health-check" => "1.18.2",
 
       # Plugins
@@ -32,6 +32,7 @@ module GitHubPages
       "jekyll-avatar" => "0.8.0",
       "jekyll-remote-theme" => "0.4.3",
       "jekyll-include-cache" => "0.2.1",
+      "jekyll-octicons" => "19.8.0",
 
       # Plugins to match GitHub.com Markdown
       "jemoji" => "0.13.0",
