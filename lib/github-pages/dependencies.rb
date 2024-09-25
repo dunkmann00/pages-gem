@@ -7,7 +7,7 @@ module GitHubPages
   class Dependencies
     VERSIONS = {
       # Jekyll
-      "jekyll" => "4.3.3",
+      "jekyll" => "4.3.4",
       "jekyll-sass-converter" => "3.0.0",
 
       # Converters
@@ -17,8 +17,8 @@ module GitHubPages
 
       # Misc
       "liquid" => "4.0.4",
-      "rouge" => "4.2.1",
-      "github-pages-health-check" => "1.18.2",
+      "rouge" => "4.4.0",
+      "github-pages-health-check" => "1.18.5",
 
       # Plugins
       "jekyll-redirect-from" => "0.16.0",
@@ -42,6 +42,7 @@ module GitHubPages
       "jekyll-readme-index" => "0.3.0",
       "jekyll-default-layout" => "0.1.5",
       "jekyll-titles-from-headings" => "0.5.3",
+      "jekyll-github-alerts" => "0.1.0",
     }.freeze
 
     # Jekyll and related dependency versions as used by GitHub Pages.

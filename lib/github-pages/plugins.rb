@@ -47,10 +47,10 @@ module GitHubPages
 
     # Themes
     THEMES = {
-      "minima" => "2.5.1",
+      "minima" => "2.5.2",
       "jekyll-swiss" => "1.0.0",
       "jekyll-theme-primer" => "0.6.0",
-      "jekyll-v4-theme-primer" => "0.15.0",
+      "jekyll-v4-theme-primer" => "0.16.0",
       "jekyll-theme-architect" => "0.2.0",
       "jekyll-theme-cayman" => "0.2.0",
       "jekyll-theme-dinky" => "0.2.0",
@@ -69,7 +69,7 @@ module GitHubPages
     THEMES_TO_CONVERT_TO_REMOTE_THEMES = {
       "jekyll-swiss" => "broccolini/swiss",
       "jekyll-theme-primer" => "pages-themes/primer@v0.6.0",
-      "jekyll-v4-theme-primer" => "dunkmann00/primer@v0.15.0",
+      "jekyll-v4-theme-primer" => "dunkmann00/primer@v0.16.0",
       "jekyll-theme-architect" => "pages-themes/architect@v0.2.0",
       "jekyll-theme-cayman" => "pages-themes/cayman@v0.2.0",
       "jekyll-theme-dinky" => "pages-themes/dinky@v0.2.0",
