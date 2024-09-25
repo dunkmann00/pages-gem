@@ -279,6 +279,15 @@ RSpec.describe "Pages Gem Integration spec" do
         expect(contents).to match('<h1 id="cached">Hi from the cache Test User!!!</h1>')
       end
     end
+
+    context "jekyll-github-alerts" do
+      it "uses a GitHub alert" do
+        expect(contents).to match('<blockquote class="markdown-alert markdown-alert-note">')
+        expect(contents).to match('<p><strong class="markdown-alert-title"><svg width="16" height="16" class="octicon octicon-info mr-2" aria-hidden="true" viewBox="0 0 16 16" version="1.1">')
+        expect(contents).to match("<p>Useful information that users should know, even when skimming content.</p>")
+        expect(contents).to match("</blockquote>")
+      end
+    end
   end
 
   context "fixture site with remote theme config" do
@@ -294,15 +303,6 @@ RSpec.describe "Pages Gem Integration spec" do
         expect(contents).to match("theme: cayman")
         expect(contents).to match('<h1 class="project-name">pages-gem</h1>')
       end
-    end
-  end
-
-  context "jekyll-github-alerts" do
-    it "uses a GitHub alert" do
-      expect(contents).to match('<blockquote class="markdown-alert markdown-alert-note">')
-      expect(contents).to match('<p><strong class="markdown-alert-title"><svg width="16" height="16" class="octicon octicon-info mr-2" aria-hidden="true" viewBox="0 0 16 16" version="1.1">')
-      expect(contents).to match("<p>Useful information that users should know, even when skimming content.</p>")
-      expect(contents).to match("</blockquote>")
     end
   end
 
