@@ -63,7 +63,7 @@ describe(GitHubPages::Configuration) do
     end
 
     it "retains Jekyll default excludes" do
-      expect(effective_config["exclude"]).to include(*Jekyll::Configuration::DEFAULTS["exclude"])
+      expect(effective_config["exclude"]).to include(*Jekyll::Configuration::DEFAULT_EXCLUDES)
     end
 
     context "markdown processor" do

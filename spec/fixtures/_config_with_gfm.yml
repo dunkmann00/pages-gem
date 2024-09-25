@@ -12,6 +12,7 @@ plugins:
   - jekyll-mentions
   - jekyll_test_plugin_malicious
   - jekyll-include-cache
+  - jekyll-github-alerts
 quiet: false
 paginate: 5
 github:
