@@ -15,6 +15,7 @@ module GitHubPages
       jekyll-default-layout
       jekyll-titles-from-headings
       jekyll-octicons
+      jekyll-github-alerts
     ).freeze
 
     # Plugins allowed by GitHub Pages
@@ -38,6 +39,7 @@ module GitHubPages
       jekyll-include-cache
       jekyll-octicons
       jekyll-remote-theme
+      jekyll-github-alerts
     ).freeze
 
     # Plugins only allowed locally
